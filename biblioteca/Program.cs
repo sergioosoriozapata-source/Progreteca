@@ -1,4 +1,5 @@
 ﻿using System;
+using biblioteca.Models;
 
 class Program
 {
@@ -22,7 +23,8 @@ class Program
             Console.WriteLine("3. Préstamos");
             Console.WriteLine("4. Búsquedas y reportes");
             Console.WriteLine("5. Guardar / Cargar datos");
-            Console.WriteLine("6. Salir");
+            Console.WriteLine("6. Pruebas de Modelos (EV07 POO)");
+            Console.WriteLine("8. Salir"); // or 6 for exit
             Console.Write("Seleccione una opción: ");
 
             string? input = Console.ReadLine();
@@ -35,7 +37,8 @@ class Program
                     case 3: ShowLoansMenu(); break;
                     case 4: ShowSearchReportsMenu(); break;
                     case 5: ShowPersistenceMenu(); break;
-                    case 6: salir = ConfirmExitAndSave(); break;
+                    case 6: MostrarObjetosPruebaEV07(); break;
+                    case 8: salir = ConfirmExitAndSave(); break;
                     default:
                         Console.WriteLine("\nOpción no válida. Presione cualquier tecla para continuar.");
                         Console.ReadKey();
@@ -48,6 +51,56 @@ class Program
                 Console.ReadKey();
             }
         }
+    }
+
+    // ==========================================
+    // EV07 - PRUEBAS DE OBJETOS Y MODELOS POO
+    // ==========================================
+    static void MostrarObjetosPruebaEV07()
+    {
+        Console.Clear();
+        Console.WriteLine("==================================================");
+        Console.WriteLine("=== PRUEBAS DE MODELOS Y OBJETOS (EV07 POO)    ===");
+        Console.WriteLine("==================================================\n");
+
+        // 1. Crear 2 libros
+        Libro libro1 = new Libro("L001", "Cien años de soledad", "Gabriel García Márquez", "Realismo Mágico", 1967);
+        Libro libro2 = new Libro("L002", "El coronel no tiene quien le escriba", "Gabriel García Márquez", "Novela", 1961);
+
+        // 2. Crear 2 usuarios
+        Usuario usuario1 = new Usuario("U001", "Carlos", "Gómez", "1039485721", "3001234567");
+        Usuario usuario2 = new Usuario("U002", "María", "López", "1012938475", "3109876543");
+
+        // 3. Crear 1 préstamo (Libro 1 prestado a Usuario 1, hace 5 días)
+        Prestamo prestamo1 = new Prestamo("P001", libro1, usuario1, DateTime.Now.AddDays(-5));
+        libro1.Disponible = false; // Actualizar disponibilidad del libro
+
+        // Mostrar Resúmenes
+        Console.WriteLine("--- RESÚMENES ---");
+        Console.WriteLine(libro1.ResumenCorto());
+        Console.WriteLine(libro2.ResumenCorto());
+        Console.WriteLine(usuario1.ResumenCorto());
+        Console.WriteLine(usuario2.ResumenCorto());
+        Console.WriteLine(prestamo1.ResumenCorto());
+
+        // Mostrar Detalles Completos
+        Console.WriteLine("\n--- DETALLES COMPLETOS ---");
+        Console.WriteLine(libro1.DetalleCompleto());
+        Console.WriteLine("\n" + usuario1.DetalleCompleto());
+        Console.WriteLine("\n" + prestamo1.DetalleCompleto());
+
+        // Mostrar Validaciones
+        Console.WriteLine("\n--- VALIDACIONES ---");
+        Console.WriteLine($"Libro 1 Disponible?: {libro1.Disponible}");
+        Console.WriteLine($"Libro 2 Disponible?: {libro2.Disponible}");
+        Console.WriteLine($"Usuario 1 Activo?: {usuario1.Activo}");
+        Console.WriteLine($"Usuario 2 Activo?: {usuario2.Activo}");
+        Console.WriteLine($"Estado del Préstamo: {prestamo1.Estado}");
+        Console.WriteLine($"¿Préstamo Vencido?: {prestamo1.EstaVencido()}");
+        Console.WriteLine($"Días Transcurridos en Préstamo: {prestamo1.DiasTranscurridos()}");
+
+        Console.WriteLine("\nPresione cualquier tecla para volver al menú principal.");
+        Console.ReadKey();
     }
 
     // ==========================================
