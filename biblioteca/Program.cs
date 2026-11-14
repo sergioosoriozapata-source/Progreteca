@@ -24,7 +24,7 @@ class Program
             Console.WriteLine("4. Búsquedas y reportes");
             Console.WriteLine("5. Guardar / Cargar datos");
             Console.WriteLine("6. Pruebas de Modelos (EV07 POO)");
-            Console.WriteLine("8. Salir"); // or 6 for exit
+            Console.WriteLine("7. Salir");
             Console.Write("Seleccione una opción: ");
 
             string? input = Console.ReadLine();
@@ -38,7 +38,7 @@ class Program
                     case 4: ShowSearchReportsMenu(); break;
                     case 5: ShowPersistenceMenu(); break;
                     case 6: MostrarObjetosPruebaEV07(); break;
-                    case 8: salir = ConfirmExitAndSave(); break;
+                    case 7: salir = ConfirmExitAndSave(); break;
                     default:
                         Console.WriteLine("\nOpción no válida. Presione cualquier tecla para continuar.");
                         Console.ReadKey();
