@@ -564,11 +564,68 @@ class Program
     // ==========================================
     static void ShowPersistenceMenu()
     {
+        bool volver = false;
+        while (!volver)
+        {
+            Console.Clear();
+            Console.WriteLine("--- GUARDAR / CARGAR DATOS ---");
+            Console.WriteLine("1. Guardar datos");
+            Console.WriteLine("2. Cargar datos");
+            Console.WriteLine("3. Reiniciar datos");
+            Console.WriteLine("4. Volver al menú principal");
+            Console.Write("Seleccione una opción: ");
+
+            string? input = Console.ReadLine();
+            if (int.TryParse(input, out int opcion))
+            {
+                switch (opcion)
+                {
+                    case 1: SaveData(); break;
+                    case 2: LoadData(); break;
+                    case 3: ResetData(); break;
+                    case 4: volver = true; break;
+                    default:
+                        Console.WriteLine("\nOpción no válida.");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+        }
+    }
+
+    static void SaveData()
+    {
         Console.Clear();
-        Console.WriteLine("--- GUARDAR / CARGAR DATOS ---");
-        Console.WriteLine("[Módulo en construcción] Se implementará en la rama feature/persistence-menu.");
+        Console.WriteLine("--- 5.1 GUARDAR DATOS ---");
+        Console.WriteLine("[Función SaveData] Guardando datos del sistema... (Simulado)");
         Console.ReadKey();
     }
+
+    static void LoadData()
+    {
+        Console.Clear();
+        Console.WriteLine("--- 5.2 CARGAR DATOS ---");
+        Console.WriteLine("[Función LoadData] Cargando datos del sistema... (Simulado)");
+        Console.ReadKey();
+    }
+
+    static void ResetData()
+    {
+        Console.Clear();
+        Console.WriteLine("--- 5.3 REINICIAR DATOS ---");
+        Console.Write("¿Está seguro de reiniciar los datos? (S/N): ");
+        string? confirm = Console.ReadLine();
+        if (confirm?.ToUpper() == "S")
+        {
+            Console.WriteLine("Datos reiniciados con éxito.");
+        }
+        else
+        {
+            Console.WriteLine("Operación cancelada.");
+        }
+        Console.ReadKey();
+    }
+
     // ==========================================
     // 6. FLUJO DE SALIDA (ConfirmExitAndSave)
     // ==========================================
