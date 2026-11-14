@@ -457,11 +457,108 @@ class Program
     // ==========================================
     static void ShowSearchReportsMenu()
     {
+        bool volver = false;
+        while (!volver)
+        {
+            Console.Clear();
+            Console.WriteLine("--- BÚSQUEDAS Y REPORTES ---");
+            Console.WriteLine("1. Buscar libro (título / autor / ID / categoría)");
+            Console.WriteLine("2. Buscar usuario (nombre / ID)");
+            Console.WriteLine("3. Ver reportes");
+            Console.WriteLine("4. Volver al menú principal");
+            Console.Write("Seleccione una opción: ");
+
+            string? input = Console.ReadLine();
+            if (int.TryParse(input, out int opcion))
+            {
+                switch (opcion)
+                {
+                    case 1: SearchBook(); break;
+                    case 2: SearchUser(); break;
+                    case 3: ReportsMenu(); break;
+                    case 4: volver = true; break;
+                    default:
+                        Console.WriteLine("\nOpción no válida.");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+        }
+    }
+
+    static void SearchBook()
+    {
         Console.Clear();
-        Console.WriteLine("--- BÚSQUEDAS Y REPORTES ---");
-        Console.WriteLine("[Módulo en construcción] Se implementará en la rama feature/search-reports-menu.");
+        Console.WriteLine("--- 4.1 BUSCAR LIBRO ---");
+        Console.WriteLine("[Función SearchBook] Buscando libro por título, autor, ID o categoría... (Simulado)");
         Console.ReadKey();
     }
+
+    static void SearchUser()
+    {
+        Console.Clear();
+        Console.WriteLine("--- 4.2 BUSCAR USUARIO ---");
+        Console.WriteLine("[Función SearchUser] Buscando usuario por nombre o ID... (Simulado)");
+        Console.ReadKey();
+    }
+
+    static void ReportsMenu()
+    {
+        bool volver = false;
+        while (!volver)
+        {
+            Console.Clear();
+            Console.WriteLine("--- 4.3 REPORTES ---");
+            Console.WriteLine("1. Reporte por usuario");
+            Console.WriteLine("2. Reporte por libro");
+            Console.WriteLine("3. Reporte de préstamos vencidos");
+            Console.WriteLine("4. Reporte resumen general");
+            Console.WriteLine("5. Volver");
+            Console.Write("Seleccione una opción: ");
+
+            string? input = Console.ReadLine();
+            if (int.TryParse(input, out int opcion))
+            {
+                switch (opcion)
+                {
+                    case 1: ReportByUser(); break;
+                    case 2: ReportByBook(); break;
+                    case 3: ReportOverdue(); break;
+                    case 4: ReportSummary(); break;
+                    case 5: volver = true; break;
+                    default:
+                        Console.WriteLine("\nOpción no válida.");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+        }
+    }
+
+    static void ReportByUser()
+    {
+        Console.WriteLine("\n[Función ReportByUser] Generando reporte por usuario... (Simulado)");
+        Console.ReadKey();
+    }
+
+    static void ReportByBook()
+    {
+        Console.WriteLine("\n[Función ReportByBook] Generando reporte por libro... (Simulado)");
+        Console.ReadKey();
+    }
+
+    static void ReportOverdue()
+    {
+        Console.WriteLine("\n[Función ReportOverdue] Generando reporte de préstamos vencidos... (Simulado)");
+        Console.ReadKey();
+    }
+
+    static void ReportSummary()
+    {
+        Console.WriteLine("\n[Función ReportSummary] Generando resumen general... (Simulado)");
+        Console.ReadKey();
+    }
+
     // ==========================================
     // 5. GUARDAR / CARGAR DATOS (ShowPersistenceMenu)
     // ==========================================
