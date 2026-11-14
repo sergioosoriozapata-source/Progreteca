@@ -631,7 +631,16 @@ class Program
     // ==========================================
     static bool ConfirmExitAndSave()
     {
-        Console.WriteLine("Saliendo del sistema...");
+        Console.Clear();
+        Console.WriteLine("--- SALIR ---");
+        Console.Write("¿Desea guardar los cambios antes de salir? (S/N): ");
+        string? respuesta = Console.ReadLine();
+        if (respuesta?.ToUpper() == "S")
+        {
+            Console.WriteLine("Guardando datos...");
+        }
+        Console.WriteLine("Saliendo del sistema. ¡Hasta luego!");
+        Console.ReadKey();
         return true;
     }
 }
