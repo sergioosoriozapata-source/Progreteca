@@ -83,9 +83,41 @@ class Program
     // ==========================================
     // UTILIDADES DE CONSOLA
     // ==========================================
+    static void LimpiarPantalla()
+    {
+        try
+        {
+            Console.Clear();
+        }
+        catch (IOException)
+        {
+            // Sin consola interactiva (salida redirigida): se continúa sin limpiar.
+        }
+        catch (InvalidOperationException)
+        {
+            // Sin consola interactiva: se continúa sin limpiar.
+        }
+    }
+
+    static void EsperarTecla()
+    {
+        try
+        {
+            Console.ReadKey();
+        }
+        catch (IOException)
+        {
+            Console.ReadLine();
+        }
+        catch (InvalidOperationException)
+        {
+            Console.ReadLine();
+        }
+    }
+
     static void Titulo(string texto)
     {
-        Console.Clear();
+        LimpiarPantalla();
         Console.WriteLine($"--- {texto} ---");
     }
 
@@ -122,7 +154,7 @@ class Program
     static void Pausa()
     {
         Console.WriteLine("\nPresione cualquier tecla para continuar...");
-        Console.ReadKey();
+        EsperarTecla();
     }
 
     static void MostrarResultado(bool exito, string mensaje)
@@ -139,7 +171,7 @@ class Program
         bool salir = false;
         while (!salir)
         {
-            Console.Clear();
+            LimpiarPantalla();
             Console.WriteLine("=== SISTEMA BIBLIOTECA - MENÚ PRINCIPAL ===");
             Console.WriteLine($"Libros: {libroService.Total} | Usuarios: {usuarioService.Total} | Préstamos: {prestamoService.Total}");
             Console.WriteLine("1. Libros");
@@ -152,6 +184,12 @@ class Program
             Console.Write("Seleccione una opción: ");
 
             string? input = Console.ReadLine();
+            if (input is null)
+            {
+                // Entrada cerrada (salida redirigida): se finaliza el programa.
+                break;
+            }
+
             if (int.TryParse(input, out int opcion))
             {
                 switch (opcion)
@@ -165,14 +203,14 @@ class Program
                     case 7: salir = ConfirmExitAndSave(); break;
                     default:
                         Console.WriteLine("\nOpción no válida. Presione cualquier tecla para continuar.");
-                        Console.ReadKey();
+                        EsperarTecla();
                         break;
                 }
             }
             else
             {
                 Console.WriteLine("\nEntrada inválida. Por favor, ingrese un número. Presione cualquier tecla para continuar.");
-                Console.ReadKey();
+                EsperarTecla();
             }
         }
     }
@@ -207,7 +245,7 @@ class Program
                     case 6: volver = true; break;
                     default:
                         Console.WriteLine("\nOpción no válida. Presione cualquier tecla.");
-                        Console.ReadKey();
+                        EsperarTecla();
                         break;
                 }
             }
@@ -252,7 +290,7 @@ class Program
                     case 4: volver = true; break;
                     default:
                         Console.WriteLine("\nOpción no válida.");
-                        Console.ReadKey();
+                        EsperarTecla();
                         break;
                 }
             }
@@ -365,7 +403,7 @@ class Program
                     case 4: volver = true; break;
                     default:
                         Console.WriteLine("\nOpción no válida.");
-                        Console.ReadKey();
+                        EsperarTecla();
                         break;
                 }
             }
@@ -446,7 +484,7 @@ class Program
                     case 6: volver = true; break;
                     default:
                         Console.WriteLine("\nOpción no válida.");
-                        Console.ReadKey();
+                        EsperarTecla();
                         break;
                 }
             }
@@ -538,7 +576,7 @@ class Program
                     case 4: volver = true; break;
                     default:
                         Console.WriteLine("\nOpción no válida.");
-                        Console.ReadKey();
+                        EsperarTecla();
                         break;
                 }
             }
@@ -636,7 +674,7 @@ class Program
                     case 6: volver = true; break;
                     default:
                         Console.WriteLine("\nOpción no válida.");
-                        Console.ReadKey();
+                        EsperarTecla();
                         break;
                 }
             }
@@ -685,7 +723,7 @@ class Program
                     case 4: volver = true; break;
                     default:
                         Console.WriteLine("\nOpción no válida.");
-                        Console.ReadKey();
+                        EsperarTecla();
                         break;
                 }
             }
@@ -800,7 +838,7 @@ class Program
                     case 4: volver = true; break;
                     default:
                         Console.WriteLine("\nOpción no válida.");
-                        Console.ReadKey();
+                        EsperarTecla();
                         break;
                 }
             }
@@ -880,7 +918,7 @@ class Program
                     case 5: volver = true; break;
                     default:
                         Console.WriteLine("\nOpción no válida.");
-                        Console.ReadKey();
+                        EsperarTecla();
                         break;
                 }
             }
@@ -1007,7 +1045,7 @@ class Program
                     case 4: volver = true; break;
                     default:
                         Console.WriteLine("\nOpción no válida.");
-                        Console.ReadKey();
+                        EsperarTecla();
                         break;
                 }
             }
@@ -1111,7 +1149,7 @@ class Program
         }
 
         Console.WriteLine("Saliendo del sistema. ¡Hasta luego!");
-        Console.ReadKey();
+        EsperarTecla();
         return true;
     }
 }
